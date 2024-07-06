@@ -288,6 +288,90 @@ def turn(playerNumber, numberOfPlayers):
         break
     discardPile.append(hand[len(hand) - 1])
     hand.pop(len(hand) - 1)
+
+    if discardPile[len(discardPile)-1] == 11:
+      print("Player "+str(playerNumber)+" played a "+faceCards[11])
+      #time.sleep(0.5)
+      jack(playerNumber, numberOfPlayers)
+      if numberOfPlayers == 2:
+        playerNumber = correctPlayer
+      elif numberOfPlayers == 3:
+        playerNumber = correctPlayer + 2
+        if playerNumber == 5:
+          playerNumber = 2
+      else:
+        playerNumber = correctPlayer + 2
+        if playerNumber == 6:
+          playerNumber = 2
+
+    elif discardPile[len(discardPile)-1] == 12:
+      print("Player "+str(playerNumber)+" played a "+faceCards[12])
+      #time.sleep(0.5)
+      queen(playerNumber, numberOfPlayers)
+      if numberOfPlayers == 2:
+        playerNumber = correctPlayer
+      elif numberOfPlayers == 3:
+        playerNumber = correctPlayer + 2
+        if playerNumber == 5:
+          playerNumber = 2
+      else:
+        playerNumber = correctPlayer + 2
+        if playerNumber == 6:
+          playerNumber = 2
+
+    elif discardPile[len(discardPile)-1] == 13:
+      print("Player "+str(playerNumber)+" played a "+faceCards[13])
+      #time.sleep(0.5)
+      king(playerNumber, numberOfPlayers)
+      if numberOfPlayers == 2:
+        playerNumber = correctPlayer
+      elif numberOfPlayers == 3:
+        playerNumber = correctPlayer + 2
+        if playerNumber == 5:
+          playerNumber = 2
+      else:
+        playerNumber = correctPlayer + 2
+        if playerNumber == 6:
+          playerNumber = 2
+
+    elif discardPile[len(discardPile)-1] == 14:
+      print("Player "+str(playerNumber)+" played an "+faceCards[14])
+      #time.sleep(0.5)
+      ace(playerNumber, numberOfPlayers)
+      if numberOfPlayers == 2:
+        playerNumber = correctPlayer
+      elif numberOfPlayers == 3:
+        playerNumber = correctPlayer + 2
+        if playerNumber == 5:
+          playerNumber = 2
+      else:
+        playerNumber = correctPlayer + 2
+        if playerNumber == 6:
+          playerNumber = 2
+
+    else:
+      print("Player "+str(playerNumber)+" played a(n) "+str(discardPile[len(discardPile)-1]))
+      #time.sleep(0.5)
+      playerNumber = playerNumber + 1
+    
+    if numberOfPlayers == 2:
+      print("\nPlayer 1 Cards: "+str(len(playerHand1)))
+      print("Player 2 Cards: "+str(len(playerHand2)))
+      print("Discard Pile: "+str(discardPile)+"\n")
+      #time.sleep(0.5)
+    elif numberOfPlayers == 3:
+      print("\nPlayer 1 Cards: "+str(len(playerHand1)))
+      print("Player 2 Cards: "+str(len(playerHand2)))
+      print("Player 3 Cards: "+str(len(playerHand3)))
+      print("Discard Pile: "+str(discardPile)+"\n")
+      #time.sleep(0.5)
+    else:
+      print("\nPlayer 1 Cards: "+str(len(playerHand1)))
+      print("Player 2 Cards: "+str(len(playerHand2)))
+      print("Player 3 Cards: "+str(len(playerHand3)))
+      print("Player 4 Cards: "+str(len(playerHand4)))
+      print("Discard Pile: "+str(discardPile)+"\n")
+      #time.sleep(0.5)
     
 
 #Create window for Graphical User Interface (GUI). 
