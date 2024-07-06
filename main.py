@@ -372,6 +372,77 @@ def turn(playerNumber, numberOfPlayers):
       print("Player 4 Cards: "+str(len(playerHand4)))
       print("Discard Pile: "+str(discardPile)+"\n")
       #time.sleep(0.5)
+
+#Gameplay will begin when the "Start" button is clicked.
+def startButtonClicked():
+
+  while True:
+    #Shuffle a regular 52 card deck
+    global startingDeck
+    startingDeck = [2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 6, 6, 6, 6, 7, 7, 7, 7, 8, 8, 8, 8, 9, 9, 9, 9, 10, 10, 10, 10, 11, 11, 11, 11, 12, 12, 12, 12, 13, 13, 13, 13, 14, 14, 14, 14]
+    global shuffledDeck
+    shuffledDeck = list()
+    
+    for i in range(52):
+      randomCard = random.randint(0, len(startingDeck)-1)
+      shuffledDeck.append(startingDeck[randomCard])
+      startingDeck.pop(randomCard)
+
+    #Create necessary variables for controlling the card game
+    global faceCards
+    faceCards = dict()
+    faceCards[11] = "Jack"
+    faceCards[12] = "Queen"
+    faceCards[13] = "King"
+    faceCards[14] = "Ace"
+    
+    global playerHand1
+    playerHand1 = list()
+    global playerHand2
+    playerHand2 = list()
+    global playerHand3
+    playerHand3 = list()
+    global playerHand4
+    playerHand4 = list()
+
+    global discardPile
+    discardPile = list()
+
+    #Logic for deciding possible outcomes of the card game when 2 players are present.
+    if playerButtonGroup.get() == "2":
+    
+      dealer = random.randint(1, 2)
+      if dealer == 1:
+        gameTextArea.insert(INSERT, "\nPlayer 1 is the dealer")
+        while len(shuffledDeck) > 0:
+          playerHand2.append(shuffledDeck[len(shuffledDeck) - 1])
+          shuffledDeck.pop(len(shuffledDeck) - 1)
+          playerHand1.append(shuffledDeck[len(shuffledDeck) - 1])
+          shuffledDeck.pop(len(shuffledDeck) - 1)
+       
+        turn(2, 2)
+        if len(playerHand1) == 0:
+          pick_up_discard_pile(2, 2)
+          gameTextArea.insert(INSERT, "\nPlayer 2 is victorious!")
+        else:
+          pick_up_discard_pile(1, 2)
+          gameTextArea.insert(INSERT, "\nPlayer 1 is victorious!")
+      
+      else:
+        gameTextArea.insert(INSERT, "\nPlayer 2 is the dealer")
+        while len(shuffledDeck) > 0:
+          playerHand1.append(shuffledDeck[len(shuffledDeck) - 1])
+          shuffledDeck.pop(len(shuffledDeck) - 1)
+          playerHand2.append(shuffledDeck[len(shuffledDeck) - 1])
+          shuffledDeck.pop(len(shuffledDeck) - 1)
+      
+        turn(1, 2)
+        if len(playerHand1) == 0:
+          pick_up_discard_pile(2, 2)
+          gameTextArea.insert(INSERT, "\nPlayer 2 is victorious!")
+        else:
+          pick_up_discard_pile(1, 2)
+          gameTextArea.insert(INSERT, "\nPlayer 1 is victorious!")
     
 
 #Create window for Graphical User Interface (GUI). 
