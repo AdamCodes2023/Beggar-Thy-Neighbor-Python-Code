@@ -176,7 +176,62 @@ def king(playerNumber, numberOfPlayers):
       if t == 0:
         playerNumber = playerNumber - 1
         pick_up_discard_pile(playerNumber, numberOfPlayers)
-     
+
+#Function that manages what happens during the card game when a player draws an Ace.
+def ace(playerNumber, numberOfPlayers):
+  playerNumber = playerNumber + 1
+  t = 4
+  while t > 0:
+    if playerNumber > numberOfPlayers:
+      playerNumber = 1
+      continue
+    elif playerNumber == 1:
+      hand = playerHand1
+    elif playerNumber == 2:
+      hand = playerHand2
+    elif playerNumber == 3:
+      hand = playerHand3
+    else:
+      hand = playerHand4
+    
+    if len(hand) == 0:
+      break
+    discardPile.append(hand[0])
+    hand.pop(0)
+
+    if discardPile[len(discardPile)-1] == 11:
+      print("Player "+str(playerNumber)+" played a "+faceCards[11])
+      #time.sleep(0.5)
+      jack(playerNumber, numberOfPlayers)
+      break
+
+    elif discardPile[len(discardPile)-1] == 12:
+      print("Player "+str(playerNumber)+" played a "+faceCards[12])
+      #time.sleep(0.5)
+      queen(playerNumber, numberOfPlayers)
+      break
+
+
+    elif discardPile[len(discardPile)-1] == 13:
+      print("Player "+str(playerNumber)+" played a "+faceCards[13])
+      #time.sleep(0.5)
+      king(playerNumber, numberOfPlayers)
+      break
+
+    elif discardPile[len(discardPile)-1] == 14:
+      print("Player "+str(playerNumber)+" played an "+faceCards[14])
+      #time.sleep(0.5)
+      ace(playerNumber, numberOfPlayers)
+      break
+
+    else:
+      print("Player "+str(playerNumber)+" played a(n) "+str(discardPile[len(discardPile)-1]))
+      #time.sleep(0.5)
+      t = t - 1
+      if t == 0:
+        playerNumber = playerNumber - 1
+        pick_up_discard_pile(playerNumber, numberOfPlayers)
+      
 
 #Create window for Graphical User Interface (GUI). 
 #Add radio buttons to select the number of players. 
