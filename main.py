@@ -231,7 +231,64 @@ def ace(playerNumber, numberOfPlayers):
       if t == 0:
         playerNumber = playerNumber - 1
         pick_up_discard_pile(playerNumber, numberOfPlayers)
-      
+
+#Function that manages what happens during the card game when a player has to pick up the discard pile. 
+#Winner absorbs discard pile before round ends.
+def pick_up_discard_pile(playerNumber, numberOfPlayers):
+  p = 1
+  while p > 0:
+    if playerNumber < 1:
+      playerNumber = numberOfPlayers
+      continue
+    elif playerNumber == 1:
+      hand = playerHand1
+    elif playerNumber == 2:
+      hand = playerHand2
+    elif playerNumber == 3:
+      hand = playerHand3
+    else:
+      hand = playerHand4
+
+    for c in range(len(discardPile)):
+      hand.insert(0, discardPile[0])
+      discardPile.pop(0)
+
+    p = p - 1
+    
+  
+  print("Player "+str(playerNumber)+" picked up the discard pile!")
+  #time.sleep(0.5)
+
+  global correctPlayer
+  correctPlayer = playerNumber
+
+#Function that creates regular turn play for the card game.
+def turn(playerNumber, numberOfPlayers):
+  while True:
+    if playerNumber > numberOfPlayers:
+      playerNumber = 1
+      continue
+    elif playerNumber == 1:
+      hand = playerHand1
+    elif playerNumber == 2:
+      hand = playerHand2
+    elif playerNumber == 3:
+      hand = playerHand3
+    else:
+      hand = playerHand4
+
+    if numberOfPlayers == 2:
+      if len(playerHand1) == 0 or len(playerHand2) == 0:
+        break
+    elif numberOfPlayers == 3:
+      if len(playerHand1) == 0 or len(playerHand2) == 0 or len(playerHand3) == 0:
+        break
+    else:
+      if len(playerHand1) == 0 or len(playerHand2) == 0 or len(playerHand3) == 0 or len(playerHand4) == 0:
+        break
+    discardPile.append(hand[len(hand) - 1])
+    hand.pop(len(hand) - 1)
+    
 
 #Create window for Graphical User Interface (GUI). 
 #Add radio buttons to select the number of players. 
