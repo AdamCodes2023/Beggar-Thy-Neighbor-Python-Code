@@ -443,7 +443,87 @@ def startButtonClicked():
         else:
           pick_up_discard_pile(1, 2)
           gameTextArea.insert(INSERT, "\nPlayer 1 is victorious!")
+
+    #Logic for deciding possible outcomes of the card game when 3 players are present. 
+    #Code increases greatly with probability and the number of possible outcomes.
+    elif playerButtonGroup.get() == "3":
     
+      dealer = random.randint(1, 3)
+      playerNumber = dealer + 1
+      if dealer == 1:
+        gameTextArea.insert(INSERT, "\nPlayer 1 is the dealer")
+        while len(shuffledDeck) > 0:
+          if playerNumber > 3:
+            playerNumber = 1
+            continue
+          elif playerNumber == 1:
+            hand = playerHand1
+          elif playerNumber == 2:
+            hand = playerHand2
+          else:
+            hand = playerHand3
+          hand.append(shuffledDeck[len(shuffledDeck) - 1])
+          shuffledDeck.pop(len(shuffledDeck) - 1)
+          playerNumber = playerNumber + 1
+      
+        turn(2, 3)
+        if len(playerHand1) == 0:
+          gameTextArea.insert(INSERT, "\nPlayer 1 has run out of cards!")
+          gameTextArea.insert(INSERT, "\nPlayer 3 becomes Player 1!")
+          playerHand1 = playerHand3
+        
+          turn(2, 2)
+          if len(playerHand1) == 0:
+            pick_up_discard_pile(2, 2)
+            gameTextArea.insert(INSERT, "\nPlayer 2 is victorious!")
+          else:
+            pick_up_discard_pile(1, 2)
+            gameTextArea.insert(INSERT, "\nPlayer 3 is victorious!")
+        elif len(playerHand2) == 0:
+          gameTextArea.insert(INSERT, "\nPlayer 2 has run out of cards!")
+          gameTextArea.insert(INSERT, "\nPlayer 3 becomes Player 2!")
+          playerHand2 = playerHand3
+        
+          turn(2, 2)
+          if len(playerHand1) == 0:
+            pick_up_discard_pile(2, 2)
+            gameTextArea.insert(INSERT, "\nPlayer 3 is victorious!")
+          else:
+            pick_up_discard_pile(1, 2)
+            gameTextArea.insert(INSERT, "\nPlayer 1 is victorious!")
+        else:
+          gameTextArea.insert(INSERT, "\nPlayer 3 has run out of cards!")
+        
+          turn(1, 2)
+          if len(playerHand1) == 0:
+            pick_up_discard_pile(2, 2)
+            gameTextArea.insert(INSERT, "\nPlayer 2 is victorious!")
+          else:
+            pick_up_discard_pile(1, 2)
+            gameTextArea.insert(INSERT, "\nPlayer 1 is victorious!")
+      
+      elif dealer == 2:
+        gameTextArea.insert(INSERT, "\nPlayer 2 is the dealer")
+        while len(shuffledDeck) > 0:
+          if playerNumber > 3:
+            playerNumber = 1
+            continue
+          elif playerNumber == 1:
+            hand = playerHand1
+          elif playerNumber == 2:
+            hand = playerHand2
+          else:
+            hand = playerHand3
+          hand.append(shuffledDeck[len(shuffledDeck) - 1])
+          shuffledDeck.pop(len(shuffledDeck) - 1)
+          playerNumber = playerNumber + 1
+       
+        turn(3, 3)
+        if len(playerHand1) == 0:
+          gameTextArea.insert(INSERT, "\nPlayer 1 has run out of cards!")
+          gameTextArea.insert(INSERT, "\nPlayer 3 becomes Player 1!")
+          playerHand1 = playerHand3
+      
 
 #Create window for Graphical User Interface (GUI). 
 #Add radio buttons to select the number of players. 
