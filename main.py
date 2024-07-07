@@ -782,7 +782,84 @@ def startButtonClicked():
             else:
               pick_up_discard_pile(1, 2)
               gameTextArea.insert(INSERT, "\nPlayer 1 is victorious!")
-              
+
+      elif dealer == 2:
+        gameTextArea.insert(INSERT, "\nPlayer 2 is the dealer")
+        while len(shuffledDeck) > 0:
+          playerHand3.append(shuffledDeck[len(shuffledDeck) - 1])
+          shuffledDeck.pop(len(shuffledDeck) - 1)
+          playerHand4.append(shuffledDeck[len(shuffledDeck) - 1])
+          shuffledDeck.pop(len(shuffledDeck) - 1)
+          playerHand1.append(shuffledDeck[len(shuffledDeck) - 1])
+          shuffledDeck.pop(len(shuffledDeck) - 1)
+          playerHand2.append(shuffledDeck[len(shuffledDeck) - 1])
+          shuffledDeck.pop(len(shuffledDeck) - 1)
+        
+        turn(3, 4)
+        if len(playerHand1) == 0:
+          gameTextArea.insert(INSERT, "\nPlayer 1 has run out of cards!")
+          gameTextArea.insert(INSERT, "\nPlayer 4 becomes Player 1!")
+          playerHand1 = playerHand4
+         
+          turn(2, 3)
+          if len(playerHand1) == 0:
+            gameTextArea.insert(INSERT, "\nPlayer 4 has run out of cards!")
+            gameTextArea.insert(INSERT, "\nPlayer 3 becomes Player 4!")
+            playerHand1 = playerHand3
+           
+            turn(2, 2)
+            if len(playerHand1) == 0:
+              pick_up_discard_pile(2, 2)
+              gameTextArea.insert(INSERT, "\nPlayer 2 is victorious!")
+            else:
+              pick_up_discard_pile(1, 2)
+              gameTextArea.insert(INSERT, "\nPlayer 3 is victorious!")
+          elif len(playerHand2) == 0:
+            gameTextArea.insert(INSERT, "\nPlayer 2 has run out of cards!")
+            gameTextArea.insert(INSERT, "\nPlayer 3 becomes Player 2!")
+            playerHand2 = playerHand3
+            
+            turn(2, 2)
+            if len(playerHand1) == 0:
+              pick_up_discard_pile(2, 2)
+              gameTextArea.insert(INSERT, "\nPlayer 3 is victorious!")
+            else:
+              pick_up_discard_pile(1, 2)
+              gameTextArea.insert(INSERT, "\nPlayer 4 is victorious!")
+          else:
+            gameTextArea.insert(INSERT, "\nPlayer 3 has run out of cards!")
+            
+            turn(1, 2)
+            if len(playerHand1) == 0:
+              pick_up_discard_pile(2, 2)
+              gameTextArea.insert(INSERT, "\nPlayer 2 is victorious!")
+            else:
+              pick_up_discard_pile(1, 2)
+              gameTextArea.insert(INSERT, "\nPlayer 4 is victorious!")
+        elif len(playerHand2) == 0:
+          gameTextArea.insert(INSERT, "\nPlayer 2 has run out of cards!")
+          gameTextArea.insert(INSERT, "\nPlayer 3 becomes Player 2 and Player 4 becomes Player 3!")
+          playerHand2 = playerHand3
+          playerHand3 = playerHand4
+          
+          turn(2, 3)
+          if len(playerHand1) == 0:
+            gameTextArea.insert(INSERT, "\nPlayer 1 has run out of cards!")
+            gameTextArea.insert(INSERT, "\nPlayer 4 becomes Player 1!")
+            playerHand1 = playerHand3
+           
+            turn(2, 2)
+            if len(playerHand1) == 0:
+              pick_up_discard_pile(2, 2)
+              gameTextArea.insert(INSERT, "\nPlayer 3 is victorious!")
+            else:
+              pick_up_discard_pile(1, 2)
+              gameTextArea.insert(INSERT, "\nPlayer 4 is victorious!")
+          elif len(playerHand2) == 0:
+            gameTextArea.insert(INSERT, "\nPlayer 3 has run out of cards!")
+            gameTextArea.insert(INSERT, "\nPlayer 4 becomes Player 2!")
+            playerHand2 = playerHand3
+                          
 
 #Create window for Graphical User Interface (GUI). 
 #Add radio buttons to select the number of players. 
