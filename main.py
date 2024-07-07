@@ -1,5 +1,6 @@
 #Beggar Thy Neighbor written by Adam Miller on 7/5/24.
 #This program simulates the card game "Beggar Thy Neighbor" where the computer plays against virtual players.
+#Official Rules Link: https://www.thesprucecrafts.com/beggar-my-neighbor-card-game-rules-411130
 
 #Random import for shuffling the deck
 import random
